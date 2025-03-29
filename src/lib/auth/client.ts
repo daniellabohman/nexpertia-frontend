@@ -37,14 +37,38 @@ export interface ResetPasswordParams {
 }
 
 class AuthClient {
-  async signUp(_: SignUpParams): Promise<{ error?: string }> {
-    // Make API request
+  // En indstilling for at vælge mellem dummy data og backend
+  private useDummyData: boolean;
 
-    // We do not handle the API, so we'll just generate a token and store it in localStorage.
-    const token = generateToken();
-    localStorage.setItem('custom-auth-token', token);
+  constructor(useDummyData: boolean = true) {
+    this.useDummyData = useDummyData; // Brug dummy data som standard
+  }
 
-    return {};
+  // Skift mellem dummy data og backend, når du er klar til at integrere
+  private async sendToBackend<T>(endpoint: string, params: T) {
+    try {
+      const response = await fetch(`http://localhost:5000${endpoint}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(params),
+      });
+      return response.json();
+    } catch (error) {
+      return { error: 'API request failed' };
+    }
+  }
+
+  async signUp(params: SignUpParams): Promise<{ error?: string }> {
+    if (this.useDummyData) {
+      const token = generateToken();
+      localStorage.setItem('custom-auth-token', token);
+      return {};
+    }
+
+    // Send til backend
+    return this.sendToBackend('/register', params);
   }
 
   async signInWithOAuth(_: SignInWithOAuthParams): Promise<{ error?: string }> {
@@ -52,19 +76,21 @@ class AuthClient {
   }
 
   async signInWithPassword(params: SignInWithPasswordParams): Promise<{ error?: string }> {
-    const { email, password } = params;
+    if (this.useDummyData) {
+      const { email, password } = params;
 
-    // Make API request
+      // Dummy login check
+      if (email !== 'sofia@devias.io' || password !== 'Secret1') {
+        return { error: 'Invalid credentials' };
+      }
 
-    // We do not handle the API, so we'll check if the credentials match with the hardcoded ones.
-    if (email !== 'sofia@devias.io' || password !== 'Secret1') {
-      return { error: 'Invalid credentials' };
+      const token = generateToken();
+      localStorage.setItem('custom-auth-token', token);
+      return {};
     }
 
-    const token = generateToken();
-    localStorage.setItem('custom-auth-token', token);
-
-    return {};
+    // Send til backend
+    return this.sendToBackend('/login', params);
   }
 
   async resetPassword(_: ResetPasswordParams): Promise<{ error?: string }> {
@@ -76,23 +102,22 @@ class AuthClient {
   }
 
   async getUser(): Promise<{ data?: User | null; error?: string }> {
-    // Make API request
-
-    // We do not handle the API, so just check if we have a token in localStorage.
-    const token = localStorage.getItem('custom-auth-token');
-
-    if (!token) {
-      return { data: null };
+    if (this.useDummyData) {
+      const token = localStorage.getItem('custom-auth-token');
+      if (!token) {
+        return { data: null };
+      }
+      return { data: user };
     }
 
-    return { data: user };
+    // Send til backend
+    return this.sendToBackend('/user', {});
   }
 
   async signOut(): Promise<{ error?: string }> {
     localStorage.removeItem('custom-auth-token');
-
     return {};
   }
 }
 
-export const authClient = new AuthClient();
+export const authClient = new AuthClient(true); // Brug dummy data som standard

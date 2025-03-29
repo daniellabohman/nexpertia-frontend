@@ -5,17 +5,17 @@ import dayjs from 'dayjs';
 
 import { config } from '@/config';
 import { Compliance } from '@/components/dashboard/overview/compliance';
-import { DokumentsTable } from '@/components/dashboard/dokumenter/dokument-tabel';
-import { Overblik } from '@/components/dashboard/overview/overblik';
-import { ComplianceChecklist } from '@/components/dashboard/overview/fremgang';
-import { AI_analyse } from '@/components/dashboard/overview/AI_analyse';
-import { Total_scanning } from '@/components/dashboard/overview/total_scanning';
-import { GDPRInfo } from '@/components/dashboard/overview/GDPR_info';
-import type { Dokument } from '@/components/dashboard/dokumenter/dokument-tabel';
+import { DocumentsTable } from '@/components/dashboard/documents/document-tabel';
+import { Overblik } from '@/components/dashboard/overview/overview';
+import { ComplianceChecklist } from '@/components/dashboard/overview/progress';
+import { AI_analyse } from '@/components/dashboard/overview/analyze';
+import { Total_scans } from '@/components/dashboard/overview/total-scan';
+import { GDPRInfo } from '@/components/dashboard/overview/gdpr-info';
+import type { Document } from '@/components/dashboard/documents/document-tabel';
 
 export const metadata = { title: `Overview | Dashboard | ${config.site.name}` } satisfies Metadata;
 
-const dokumenter: Dokument[] = [
+const dokumenter: Document[] = [
   {
     id: 'DOC-001',
     avatar: '/assets/pdf-icon.png',
@@ -66,7 +66,7 @@ export default function Page(): React.JSX.Element {
         <ComplianceChecklist />
       </Grid>
       <Grid lg={3} sm={6} xs={12}>
-        <Total_scanning value={250} sx={{ height: "100%" }}/>
+        <Total_scans value={250} sx={{ height: "100%" }}/>
       </Grid>
 
       <Grid lg={8} xs={12}>
@@ -82,7 +82,7 @@ export default function Page(): React.JSX.Element {
         <GDPRInfo sx={{ height: '100%' }} />
       </Grid>
       <Grid lg={12} md={12} xs={12}>
-        <DokumentsTable
+        <DocumentsTable
           count={dokumenter.length}
           page={page}
           rows={paginatedDokumenter}

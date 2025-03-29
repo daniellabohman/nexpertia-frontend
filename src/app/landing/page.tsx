@@ -9,8 +9,8 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { SignInForm } from '@/components/auth/sign-in-form';
-import GDPRScanner from "@/components/auth/GDPRScanner";
+import { SignInForm } from '@/components/auth/login-form';
+import GDPRScanner from "@/components/auth/url-scanner";
 import { DynamicLogo } from '@/components/core/logo';
 
 export default function LandingPage(): React.JSX.Element {

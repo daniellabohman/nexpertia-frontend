@@ -2,16 +2,16 @@ export const paths = {
   home: '/',
   landing: '/landing',
   auth: {
-    signIn: '/auth/sign-in',
-    signUp: '/auth/sign-up',
+    login: '/auth/login',
+    register: '/auth/signup',
     resetPassword: '/auth/reset-password',
   },
   dashboard: {
     overview: '/dashboard',
-    account: '/dashboard/profil',
-    dokumenter: '/dashboard/dokumenter',
-    analyse: '/dashboard/analyse',
+    profil: '/dashboard/profil',
+    documents: '/dashboard/documents',
+    analyze: '/dashboard/analyze',
     settings: '/dashboard/settings',
   },
-  errors: { notFound: '/errors/not-found' },
+  errors: { notFound: '/errors/betaling' },
 } as const;

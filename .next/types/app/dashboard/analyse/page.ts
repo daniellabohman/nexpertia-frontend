@@ -1,8 +1,8 @@
-// File: C:\Users\danie\Desktop\Nexdata\Nexpertia\new-frontend\src\app\dashboard\analyse\page.tsx
-import * as entry from '../../../../../src/app/dashboard/analyse/page.js'
+// File: C:\Users\danie\Desktop\Nexdata\Nexpertia\new-frontend\src\app\dashboard\analyze\page.tsx
+import * as entry from '../../../../../src/app/dashboard/analyze/page.jsx'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../../../src/app/dashboard/analyse/page.js')
+type TEntry = typeof import('../../../../../src/app/dashboard/analyze/page.jsx')
 
 // Check that the entry is a valid entry
 checkFields<Diff<{

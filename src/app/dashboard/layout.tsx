@@ -1,3 +1,6 @@
+// src/app/dashboard/layout.tsx
+
+import { Metadata } from "next"; // Import Metadata from next
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -6,6 +9,13 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import { AuthGuard } from '@/components/auth/auth-guard';
 import { MainNav } from '@/components/dashboard/layout/main-nav';
 import { SideNav } from '@/components/dashboard/layout/side-nav';
+
+// Define metadata for this layout
+export const metadata: Metadata = {
+  title: `Dokumenter | Dashboard | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+  // You can also define other metadata fields, like description, etc.
+  description: 'Dashboard for managing documents and scans.',
+};
 
 interface LayoutProps {
   children: React.ReactNode;

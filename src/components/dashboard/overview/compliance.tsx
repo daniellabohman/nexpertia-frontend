@@ -22,7 +22,7 @@ export function ComplianceFeature({ complianceScore, riskLevel }: ComplianceProp
   return (
     <div>
       <h2>Compliance Score: {complianceScore}</h2>
-      <p>Risk Level: {riskLevel}</p>
+      <p>Risiko Niveau: {riskLevel}</p>
     </div>
   );
 }

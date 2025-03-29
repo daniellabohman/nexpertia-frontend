@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react';
 import type { Metadata } from 'next';
 import Stack from '@mui/material/Stack';
@@ -5,10 +7,8 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2';
 
 import { config } from '@/config';
-import { ProfilDetaljeForm } from '@/components/dashboard/profil/profilform';
-import { ProfilInfo } from '@/components/dashboard/profil/profilinfo';
-
-export const metadata = { title: `Profil | Dashboard | ${config.site.name}` } satisfies Metadata;
+import { ProfilDetaljeForm } from '@/components/dashboard/profil/profil-form';
+import { ProfilInfo } from '@/components/dashboard/profil/profil-info';
 
 export default function Page(): React.JSX.Element {
   return (

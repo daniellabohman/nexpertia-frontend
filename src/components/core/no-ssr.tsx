@@ -9,8 +9,6 @@ export interface NoSsrProps {
   fallback?: React.ReactNode;
 }
 
-// https://github.com/mui/material-ui/blob/master/packages/mui-base/src/NoSsr/NoSsr.tsx
-// without prop-types
 export function NoSsr(props: NoSsrProps): React.JSX.Element {
   const { children, defer = false, fallback = null } = props;
   const [mountedState, setMountedState] = React.useState(false);
@@ -29,3 +27,6 @@ export function NoSsr(props: NoSsrProps): React.JSX.Element {
 
   return <React.Fragment>{mountedState ? children : fallback}</React.Fragment>;
 }
+
+//vil forhindre server-side rendering af visse komponenter (f.eks. hvis de bruger browser-specifikke API'er). vil udskyde rendering af en komponent, indtil klienten er færdig med at loade.
+//I dette tilfælde vil <ExpensiveComponent /> kun blive renderet på klienten, og indtil da vises Loading

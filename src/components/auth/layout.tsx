@@ -3,7 +3,7 @@ import RouterLink from 'next/link';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import GDPRScanner from "@/components/auth/GDPRScanner";
+import GDPRScanner from "@/components/auth/url-scanner";
 import { paths } from '@/paths';
 import { DynamicLogo } from '@/components/core/logo';
 
