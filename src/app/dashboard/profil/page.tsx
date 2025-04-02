@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2';
 
 import { config } from '@/config';
-import { ProfilDetaljeForm } from '@/components/dashboard/profil/profil-form';
+import { ProfilDetailForm } from '@/components/dashboard/profil/profil-form';
 import { ProfilInfo } from '@/components/dashboard/profil/profil-info';
 
 export default function Page(): React.JSX.Element {
@@ -21,7 +21,7 @@ export default function Page(): React.JSX.Element {
           <ProfilInfo />
         </Grid>
         <Grid lg={8} md={6} xs={12}>
-          <ProfilDetaljeForm />
+          <ProfilDetailForm />
         </Grid>
       </Grid>
     </Stack>

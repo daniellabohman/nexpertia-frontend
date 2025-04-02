@@ -10,6 +10,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { ArrowSquareUpRight as ArrowSquareUpRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowSquareUpRight';
 import { CaretUpDown as CaretUpDownIcon } from '@phosphor-icons/react/dist/ssr/CaretUpDown';
+import Grid from '@mui/material/Grid'; 
 
 import type { NavItemConfig } from '@/types/nav';
 import { paths } from '@/paths';
@@ -115,14 +116,11 @@ function NavItem({ disabled, external, href, icon, matcher, pathname, title }: N
   return (
     <li>
       <Box
-        {...(href
-          ? {
-              component: external ? 'a' : RouterLink,
-              href,
-              target: external ? '_blank' : undefined,
-              rel: external ? 'noreferrer' : undefined,
-            }
-          : { role: 'button' })}
+      component={href ? (external ? 'a' : RouterLink) : 'div'} // <-- Ensure it's never undefined
+      href={href}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noreferrer' : undefined}
+
         sx={{
           alignItems: 'center',
           borderRadius: 1,
